@@ -12,7 +12,7 @@
   --dark:#12102A;--bg:#F4F0FF;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;overflow-x:hidden;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;overflow-x:clip;}
 
 /* ── HEADER ── */
 header{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);padding:11px 14px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 20px rgba(123,47,190,.45);position:sticky;top:0;z-index:100;}
@@ -283,11 +283,88 @@ header{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);padding:11px 14px;disp
 .weak-retry-btn:active{transform:translateY(4px);box-shadow:none;}
 .weak-empty{text-align:center;padding:40px 20px;color:#bbb;font-size:.9rem;font-weight:700;}
 
+/* ══ MODE RÉVISION ══ */
+.rev-wrap{max-width:580px;margin:0 auto;padding:14px 14px 40px;}
+.rev-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.rev-header h2{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;color:var(--dark);}
+.rev-sub-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none;margin-bottom:14px;}
+.rev-sub-tabs::-webkit-scrollbar{display:none;}
+.rev-tab{flex-shrink:0;background:#fff;border:3px solid #E0D9FF;border-radius:20px;padding:7px 14px;font-family:'Baloo 2',cursive;font-size:.82rem;font-weight:800;color:#7B2FBE;cursor:pointer;transition:.15s;white-space:nowrap;}
+.rev-tab.active{background:#7B2FBE;color:#fff;border-color:#7B2FBE;}
+.fiche{background:#fff;border-radius:18px;padding:20px;box-shadow:0 5px 0 #d9d0f0;border:3px solid #ede8ff;margin-bottom:14px;}
+.fiche-title{font-family:'Baloo 2',cursive;font-size:1.15rem;font-weight:900;color:var(--dark);display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #f0eaff;}
+.fiche-section{margin-bottom:14px;}
+.fiche-section h4{font-family:'Baloo 2',cursive;font-size:.9rem;font-weight:800;color:#7B2FBE;margin-bottom:8px;}
+.fiche-point{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid #f8f5ff;font-size:.84rem;font-weight:600;color:#333;line-height:1.5;}
+.fiche-point:last-child{border-bottom:none;}
+.fiche-point .fp-bullet{color:#7B2FBE;font-size:.7rem;margin-top:5px;flex-shrink:0;}
+.fiche-formule{background:linear-gradient(135deg,#f0e8ff,#e8f0ff);border-radius:12px;padding:10px 14px;margin:6px 0;font-family:'Baloo 2',cursive;font-size:.95rem;font-weight:800;color:#1a1a4e;text-align:center;border:2px solid #d0c8ff;}
+.fiche-exemple{background:#fffbe6;border-radius:10px;padding:8px 12px;margin:5px 0;font-size:.8rem;font-weight:600;color:#7d6608;border-left:3px solid var(--amber);}
+.fiche-piege{background:#fff0f0;border-radius:10px;padding:8px 12px;margin:5px 0;font-size:.8rem;font-weight:600;color:#c0392b;border-left:3px solid var(--coral);}
+.fiche-astuce{background:#edfff5;border-radius:10px;padding:8px 12px;margin:5px 0;font-size:.8rem;font-weight:600;color:#00a07a;border-left:3px solid var(--mint);}
+.fiche-print-btn{width:100%;padding:12px;border-radius:12px;border:none;background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 4px 0 rgba(108,92,231,.4);margin-top:8px;transition:.15s;}
+.fiche-print-btn:active{transform:translateY(4px);box-shadow:none;}
+@media print{header,.rev-sub-tabs,.rev-header,.fiche-print-btn{display:none!important;}.fiche{box-shadow:none;border:1px solid #ddd;break-inside:avoid;}}
+
+/* ══ STREAK POPUP ══ */
+.streak-popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:300;display:flex;align-items:center;justify-content:center;}
+.streak-popup{background:#fff;border-radius:24px;padding:30px 24px;text-align:center;max-width:320px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:popIn .35s cubic-bezier(.34,1.56,.64,1);}
+@keyframes popIn{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.streak-popup .sp-flame{font-size:5rem;animation:flicker 1s infinite alternate;display:block;margin-bottom:8px;}
+.streak-popup h2{font-family:'Baloo 2',cursive;font-size:1.7rem;font-weight:900;color:var(--dark);margin-bottom:4px;}
+.streak-popup .sp-count{font-family:'Baloo 2',cursive;font-size:3.5rem;font-weight:900;color:var(--amber);line-height:1;}
+.streak-popup .sp-label{font-size:.82rem;color:#aaa;font-weight:700;margin-bottom:18px;}
+.streak-popup p{font-size:.9rem;color:#666;font-weight:600;margin-bottom:18px;}
+.streak-popup .sp-btn{width:100%;padding:14px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--amber),var(--coral));color:#fff;font-family:'Baloo 2',cursive;font-size:1.05rem;font-weight:800;cursor:pointer;box-shadow:0 5px 0 rgba(255,165,2,.4);}
+
+/* ══ TEACHER DASHBOARD ══ */
+.dash-wrap{max-width:600px;margin:0 auto;padding:0 0 40px;}
+.dash-header{background:linear-gradient(135deg,#2d3436,#636e72);padding:18px 16px;display:flex;align-items:center;gap:12px;}
+.dash-header h2{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;color:#fff;}
+.dash-header .btn-bk{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.3);color:#fff;}
+.dash-lock{padding:40px 20px;text-align:center;}
+.dash-lock .dl-ico{font-size:4rem;margin-bottom:12px;}
+.dash-lock h3{font-family:'Baloo 2',cursive;font-size:1.3rem;font-weight:800;color:var(--dark);margin-bottom:6px;}
+.dash-lock p{font-size:.85rem;color:#aaa;font-weight:600;margin-bottom:20px;}
+.dash-pin-row{display:flex;gap:10px;justify-content:center;margin-bottom:16px;}
+.dash-pin-row input{width:52px;height:60px;border-radius:12px;border:3px solid #E0D9FF;font-size:1.6rem;font-weight:900;text-align:center;font-family:'Baloo 2',cursive;color:var(--dark);outline:none;transition:.15s;}
+.dash-pin-row input:focus{border-color:#7B2FBE;box-shadow:0 0 0 3px rgba(123,47,190,.15);}
+.dash-body{padding:14px;}
+.dash-stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px;}
+.dash-stat{background:#fff;border-radius:16px;padding:16px;text-align:center;box-shadow:0 4px 0 #d9d0f0;border:3px solid #ede8ff;}
+.dash-stat .ds-val{font-family:'Baloo 2',cursive;font-size:2.2rem;font-weight:900;color:var(--dark);}
+.dash-stat .ds-lbl{font-size:.72rem;color:#aaa;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+.dash-section{background:#fff;border-radius:16px;padding:16px;box-shadow:0 4px 0 #d9d0f0;border:3px solid #ede8ff;margin-bottom:12px;}
+.dash-section h3{font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:12px;}
+.dsr{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #f5f0ff;}
+.dsr:last-child{border-bottom:none;}
+.dsr-av{font-size:1.3rem;width:36px;height:36px;background:#f0f4ff;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.dsr-info{flex:1;}
+.dsr-name{font-size:.88rem;font-weight:800;color:var(--dark);}
+.dsr-meta{font-size:.7rem;color:#aaa;font-weight:600;}
+.dsr-right{text-align:right;}
+.dsr-xp{font-family:'Baloo 2',cursive;font-size:.9rem;font-weight:800;color:#7B2FBE;}
+.dsr-streak{font-size:.7rem;color:#aaa;}
+.dwb{margin-bottom:9px;}
+.dwb-top{display:flex;justify-content:space-between;font-size:.78rem;font-weight:700;color:var(--dark);margin-bottom:4px;}
+.dwb-bar{background:#eee;border-radius:20px;height:10px;overflow:hidden;}
+.dwb-fill{height:100%;border-radius:20px;}
+.dash-inactive-row{background:#fff8f0;border-radius:12px;padding:10px 14px;border:2px solid #ffe0b2;font-size:.82rem;font-weight:700;color:#e67e22;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.msg-textarea{width:100%;padding:11px 14px;border-radius:11px;border:3px solid #E0D9FF;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:600;color:var(--dark);outline:none;resize:none;height:80px;margin-bottom:10px;transition:.15s;}
+.msg-textarea:focus{border-color:#7B2FBE;}
+.msg-banner{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);border-radius:14px;padding:12px 16px;margin:0 14px 10px;display:flex;align-items:center;gap:10px;}
+.msg-banner .mb-ico{font-size:1.3rem;flex-shrink:0;}
+.msg-banner .mb-text{font-size:.85rem;font-weight:700;color:#fff;flex:1;}
+.msg-banner .mb-close{color:rgba(255,255,255,.6);font-size:.85rem;cursor:pointer;font-weight:800;padding:4px;}
+
 .parcours-wrap{max-width:420px;margin:0 auto;padding:14px 14px 40px;}
 .parcours-header{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
 .parcours-header h2{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;color:var(--dark);}
-.parcours-sub-selector{display:flex;gap:8px;overflow-x:auto;padding:2px 14px 10px;scrollbar-width:none;}
-.parcours-sub-selector::-webkit-scrollbar{display:none;}
+.parcours-sub-selector{display:flex;gap:8px;overflow-x:auto;overflow-y:visible;padding:2px 14px 10px;scrollbar-width:thin;scrollbar-color:#d0c8ff transparent;-webkit-overflow-scrolling:touch;cursor:grab;}
+.parcours-sub-selector:active{cursor:grabbing;}
+.parcours-sub-selector::-webkit-scrollbar{height:4px;}
+.parcours-sub-selector::-webkit-scrollbar-thumb{background:#d0c8ff;border-radius:10px;}
+.parcours-sub-selector::-webkit-scrollbar-track{background:transparent;}
 .psub-btn{flex-shrink:0;background:#fff;border:3px solid #E0D9FF;border-radius:20px;padding:7px 14px;font-family:'Baloo 2',cursive;font-size:.82rem;font-weight:800;color:#7B2FBE;cursor:pointer;transition:.15s;white-space:nowrap;}
 .psub-btn:hover,.psub-btn.active{background:#7B2FBE;color:#fff;border-color:#7B2FBE;}
 
@@ -532,6 +609,18 @@ header{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);padding:11px 14px;disp
       <span class="pc-arrow">›</span>
     </button>
   </div>
+  <div style="display:flex;gap:10px;padding:0 14px 10px;">
+    <button class="parcours-cta" style="background:linear-gradient(135deg,#6c5ce7,#a29bfe);box-shadow:0 5px 0 rgba(108,92,231,.35);flex:1;" onclick="showRevision()">
+      <span class="pc-ico" style="font-size:1.6rem;">📖</span>
+      <div class="pc-text"><div class="pc-title" style="font-size:.95rem;">Fiches révision</div></div>
+      <span class="pc-arrow">›</span>
+    </button>
+    <button class="parcours-cta" style="background:linear-gradient(135deg,#2d3436,#636e72);box-shadow:0 5px 0 rgba(45,52,54,.35);flex:1;" onclick="showProfDashboard()">
+      <span class="pc-ico" style="font-size:1.6rem;">👨‍🏫</span>
+      <div class="pc-text"><div class="pc-title" style="font-size:.95rem;">Espace prof</div></div>
+      <span class="pc-arrow">›</span>
+    </button>
+  </div>
   <div class="sec-title">🎯 Choisir une matière</div>
   <div class="mat-grid">
     <div class="mat-card math" onclick="openSubject('math')"><span class="mej">📐</span><div class="mn">Maths</div><div class="ml">Algèbre · Géométrie · Stats</div><div class="mp" id="mp-math" style="color:#1E90FF"></div></div>
@@ -597,6 +686,16 @@ header{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);padding:11px 14px;disp
     </div>
   </div>
   <button class="btn-home" onclick="goHome()">🏠 Retour à l'accueil</button>
+</div>
+
+<!-- ═══ MODE RÉVISION ═══ -->
+<div id="revision-screen" class="screen">
+  <div id="revision-inner"></div>
+</div>
+
+<!-- ═══ TABLEAU DE BORD PROF ═══ -->
+<div id="prof-dashboard-screen" class="screen">
+  <div id="prof-dashboard-inner"></div>
 </div>
 
 <!-- ═══ PROFILE ═══ -->
@@ -1147,6 +1246,7 @@ function login(id){
   const t=new Date().toDateString();
   if(CU.dailyDate!==t){CU.dailyDone=0;CU.dailyDate=t;db.users[id]=CU;saveDB(db);}
   refreshHdr();goHome();
+  setTimeout(()=>checkDailyStreak(),500);
 }
 
 /* ════════════════════════
@@ -1201,6 +1301,7 @@ function goHome(){
     el.textContent=s&&s.done>0?`✅ ${Math.round(s.correct/s.done*100)}%`:'➕ À commencer';
   });
   refreshHdr();show('home-screen');
+  renderProfMsg();
 }
 
 /* ════════════════════════
@@ -1235,9 +1336,31 @@ function shuffleAnswers(questions){
   return questions.map(q=>{
     const correctText=q.a[q.c];
     const answers=[...q.a];
-    for(let i=answers.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[answers[i],answers[j]]=[answers[j],answers[i]];}
-    return Object.assign({},q,{a:answers,c:answers.indexOf(correctText)});
+    // Fisher-Yates shuffle
+    for(let i=answers.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [answers[i],answers[j]]=[answers[j],answers[i]];
+    }
+    // Anti-biais longueur : on trie par longueur puis on réinsère la bonne réponse
+    // à une position aléatoire pour qu'elle ne soit pas toujours la plus longue visible
+    // On réordonne : 2 courtes, bonne réponse, 1 courte — ordre aléatoire parmi ça
+    const sorted = [...answers].sort((a,b)=>a.length-b.length);
+    // Place correct answer at random index (0-3), not always last
+    const newIdx = Math.floor(Math.random()*answers.length);
+    const withoutCorrect = sorted.filter(a=>a!==correctText);
+    withoutCorrect.splice(newIdx,0,correctText);
+    return Object.assign({},q,{a:withoutCorrect,c:withoutCorrect.indexOf(correctText)});
   });
+}
+
+// Drag-to-scroll for parcours selector on desktop
+function initDragScroll(el){
+  if(!el)return;
+  let isDown=false,startX,scrollLeft;
+  el.addEventListener('mousedown',e=>{isDown=true;el.classList.add('active');startX=e.pageX-el.offsetLeft;scrollLeft=el.scrollLeft;});
+  el.addEventListener('mouseleave',()=>{isDown=false;el.classList.remove('active');});
+  el.addEventListener('mouseup',()=>{isDown=false;el.classList.remove('active');});
+  el.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();const x=e.pageX-el.offsetLeft;const walk=(x-startX)*1.5;el.scrollLeft=scrollLeft-walk;});
 }
 function launchTheme(sub,themeIdx){
   const th=QDB[sub][themeIdx];
@@ -1685,6 +1808,7 @@ function renderParcoursSubSelector(){
     btn.onclick = ()=>{PARC_SUB=sub;renderParcoursSubSelector();renderPath();};
     sel.appendChild(btn);
   });
+  initDragScroll(sel);
 }
 
 function getNodeKey(sub, chapIdx, stepIdx){ return `parc_${sub}_${chapIdx}_${stepIdx}`; }
@@ -2230,6 +2354,476 @@ function downloadQR(){
 }
 
 refreshCD();showLogin();
+
+/* ════════════════════════
+   MESSAGE PROF (bannière accueil)
+════════════════════════ */
+function renderProfMsg(){
+  const db=loadDB();
+  const msg=(db.profMsg||'').trim();
+  const existing=document.getElementById('prof-msg-banner');
+  if(existing)existing.remove();
+  if(!msg)return;
+  const banner=document.createElement('div');
+  banner.id='prof-msg-banner';
+  banner.className='msg-banner';
+  banner.innerHTML=`<span class="mb-ico">👨‍🏫</span><span class="mb-text">${msg}</span><span class="mb-close" onclick="this.closest('.msg-banner').remove()">✕</span>`;
+  const home=document.getElementById('home-screen');
+  const hero=home.querySelector('.hero');
+  if(hero)hero.after(banner);
+}
+
+/* ════════════════════════
+   STREAK QUOTIDIEN
+════════════════════════ */
+function checkDailyStreak(){
+  if(!CU)return;
+  const db=loadDB(),u=db.users[CID];
+  const today=new Date().toDateString();
+  const yesterday=new Date(Date.now()-864e5).toDateString();
+  // Si dernière connexion = hier → streak continue, sinon reset
+  if(u.lastLoginDate && u.lastLoginDate!==today && u.lastLoginDate!==yesterday){
+    // Streak cassé
+    if(u.streak>0){
+      u.streak=0;
+      db.users[CID]=u;saveDB(db);CU=u;
+      showStreakBroken();
+      return;
+    }
+  }
+  // Première connexion du jour → montrer popup streak
+  if(u.lastLoginDate!==today){
+    u.lastLoginDate=today;
+    db.users[CID]=u;saveDB(db);CU=u;
+    if(u.streak>0) showStreakCongrats(u.streak);
+  } else {
+    u.lastLoginDate=today;
+    db.users[CID]=u;saveDB(db);CU=u;
+  }
+}
+
+function showStreakCongrats(streak){
+  const msgs={1:"C'est parti ! 🚀",2:"2 jours de suite, continue !",3:"3 jours ! T'es chaud ! 🔥",5:"5 jours consécutifs, incroyable !",7:"UNE SEMAINE ! Tu es une légende 👑",10:"10 jours ! Le brevet n'a qu'à bien se tenir !"};
+  const msg=msgs[streak]||`${streak} jours de suite, respect !`;
+  const overlay=document.createElement('div');
+  overlay.className='streak-popup-overlay';
+  overlay.innerHTML=`
+    <div class="streak-popup">
+      <span class="sp-flame">🔥</span>
+      <h2>Streak du jour !</h2>
+      <div class="sp-count">${streak}</div>
+      <div class="sp-label">jour${streak>1?'s':''} de suite</div>
+      <p>${msg}</p>
+      <button class="sp-btn" onclick="this.closest('.streak-popup-overlay').remove()">C'est parti ! 💪</button>
+    </div>`;
+  document.body.appendChild(overlay);
+  setTimeout(()=>overlay.remove(),6000);
+}
+
+function showStreakBroken(){
+  const overlay=document.createElement('div');
+  overlay.className='streak-popup-overlay';
+  overlay.innerHTML=`
+    <div class="streak-popup">
+      <span class="sp-flame" style="filter:grayscale(1)">💔</span>
+      <h2>Streak perdu...</h2>
+      <div class="sp-count" style="color:var(--coral)">0</div>
+      <div class="sp-label">jour de suite</div>
+      <p>Tu avais une belle série mais t'as raté une journée. Recommence dès aujourd'hui !</p>
+      <button class="sp-btn" onclick="this.closest('.streak-popup-overlay').remove()">Je reviens plus fort ! 💪</button>
+    </div>`;
+  document.body.appendChild(overlay);
+}
+
+/* ════════════════════════
+   FICHES DE RÉVISION
+════════════════════════ */
+const FICHES = {
+  math:[
+    {theme:"📐 Géométrie",content:[
+      {type:"section",title:"🔑 Formules essentielles",items:[
+        {type:"formule",text:"Pythagore : BC² = AB² + AC² (triangle rectangle en A)"},
+        {type:"formule",text:"cos(α) = adjacent / hypoténuse"},
+        {type:"formule",text:"sin(α) = opposé / hypoténuse"},
+        {type:"formule",text:"Aire trapèze = (b₁ + b₂) × h / 2"},
+      ]},
+      {type:"section",title:"⚡ À retenir",items:[
+        {type:"point",text:"Thalès : 2 droites parallèles coupant 2 sécantes → rapports égaux"},
+        {type:"point",text:"Un vecteur = direction + sens + norme (3 caractéristiques)"},
+        {type:"astuce",text:"Pour Pythagore, le carré le plus grand = côté opposé à l'angle droit"},
+        {type:"piege",text:"Ne confonds pas sin et cos ! Adjacent = côté touché par l'angle"},
+      ]},
+    ]},
+    {theme:"🔢 Algèbre",content:[
+      {type:"section",title:"🔑 Identités remarquables",items:[
+        {type:"formule",text:"(a+b)² = a² + 2ab + b²"},
+        {type:"formule",text:"(a-b)² = a² - 2ab + b²"},
+        {type:"formule",text:"a² - b² = (a+b)(a-b)"},
+      ]},
+      {type:"section",title:"⚡ À retenir",items:[
+        {type:"point",text:"Puissances négatives : a⁻ⁿ = 1/aⁿ"},
+        {type:"point",text:"Fonction affine f(x) = ax + b → a = pente, b = ordonnée à l'origine"},
+        {type:"exemple",text:"Exemple : x² - 9 = (x+3)(x-3) car a²-b² = (a+b)(a-b)"},
+        {type:"piege",text:"Diviser une inégalité par un nombre NÉGATIF → le signe change !"},
+      ]},
+    ]},
+    {theme:"📊 Stats & Probas",content:[
+      {type:"section",title:"🔑 Formules",items:[
+        {type:"formule",text:"Moyenne = somme des valeurs / effectif total"},
+        {type:"formule",text:"Fréquence = effectif / effectif total"},
+        {type:"formule",text:"P(A∩B) = P(A) × P(B) si A et B indépendants"},
+      ]},
+      {type:"section",title:"⚡ À retenir",items:[
+        {type:"point",text:"Médiane : valeur du milieu (ou moyenne des 2 centrales si effectif pair)"},
+        {type:"astuce",text:"La somme de toutes les probabilités = 1"},
+        {type:"piege",text:"Médiane ≠ Moyenne ! La médiane n'est pas affectée par les valeurs extrêmes"},
+      ]},
+    ]},
+  ],
+  fr:[
+    {theme:"✍️ Grammaire",content:[
+      {type:"section",title:"🔑 Temps du récit",items:[
+        {type:"point",text:"Passé simple = actions ponctuelles qui font avancer le récit"},
+        {type:"point",text:"Imparfait = descriptions, habitudes, cadre (arrière-plan)"},
+        {type:"exemple",text:"'Le soleil brillait (imparfait). Soudain, il tomba (passé simple).'"},
+        {type:"piege",text:"Accord PP avec avoir : COD AVANT le verbe → accord. COD après → invariable"},
+      ]},
+      {type:"section",title:"⚡ Fonctions grammaticales",items:[
+        {type:"point",text:"Sujet : qui fait l'action — COD : qui subit l'action directement"},
+        {type:"point",text:"COI : complément indirect (avec préposition : à, de...)"},
+        {type:"point",text:"CC manière / lieu / temps / cause / but / conséquence"},
+        {type:"astuce",text:"Subjonctif après : vouloir que, craindre que, bien que, pour que..."},
+      ]},
+    ]},
+    {theme:"📚 Figures de style",content:[
+      {type:"section",title:"🔑 Les incontournables",items:[
+        {type:"point",text:"Métaphore : comparaison SANS outil ('il est un lion')"},
+        {type:"point",text:"Comparaison : avec outil comme, tel, semblable à..."},
+        {type:"point",text:"Hyperbole : exagération ('je t'ai dit mille fois')"},
+        {type:"point",text:"Ironie : dire le contraire de ce qu'on pense"},
+        {type:"point",text:"Allitération : répétition de sons consonantiques"},
+        {type:"point",text:"Anaphore : répétition d'un mot en début de phrase"},
+        {type:"formule",text:"Apologue = récit court + morale (fables, contes)"},
+      ]},
+      {type:"section",title:"⚡ Courants littéraires",items:[
+        {type:"point",text:"Classicisme (XVIIe) : règles, raison, Corneille, Racine, La Fontaine"},
+        {type:"point",text:"Romantisme (XIXe) : émotions, nature, Hugo, Lamartine"},
+        {type:"point",text:"Réalisme (XIXe) : société fidèle, Balzac, Zola, Flaubert"},
+        {type:"piege",text:"Ne confonds pas métaphore et comparaison : la métaphore n'a pas d'outil !"},
+      ]},
+    ]},
+  ],
+  hist:[
+    {theme:"🌍 Guerres Mondiales",content:[
+      {type:"section",title:"🔑 Dates clés WWI",items:[
+        {type:"formule",text:"28 juin 1914 → Assassinat de François-Ferdinand à Sarajevo"},
+        {type:"formule",text:"1914-1918 → Première Guerre Mondiale"},
+        {type:"formule",text:"28 juin 1919 → Traité de Versailles"},
+      ]},
+      {type:"section",title:"🔑 Dates clés WWII",items:[
+        {type:"formule",text:"30 janvier 1933 → Hitler chancelier"},
+        {type:"formule",text:"6 juin 1944 → Débarquement en Normandie (D-Day)"},
+        {type:"formule",text:"8 mai 1945 → Capitulation de l'Allemagne"},
+        {type:"point",text:"La Shoah = génocide systématique des Juifs d'Europe (6 millions)"},
+        {type:"piege",text:"Collaboration ≠ Résistance. Le régime de Vichy (Pétain) = collaboration"},
+      ]},
+    ]},
+    {theme:"🌐 Guerre Froide",content:[
+      {type:"section",title:"🔑 Repères",items:[
+        {type:"formule",text:"1947 → Début Guerre Froide (doctrine Truman)"},
+        {type:"formule",text:"13 août 1961 → Construction du mur de Berlin"},
+        {type:"formule",text:"9 novembre 1989 → Chute du mur de Berlin"},
+        {type:"formule",text:"25 décembre 1991 → Dissolution de l'URSS"},
+      ]},
+      {type:"section",title:"⚡ À retenir",items:[
+        {type:"point",text:"USA (capitalisme + OTAN) vs URSS (communisme + Pacte de Varsovie)"},
+        {type:"point",text:"Guerre Froide = pas d'affrontement DIRECT entre les 2 blocs"},
+        {type:"astuce",text:"Guerre Froide = guerre idéologique, économique, spatiale, sportive..."},
+      ]},
+    ]},
+  ],
+  svt:[
+    {theme:"🧬 Génétique",content:[
+      {type:"section",title:"🔑 Vocabulaire clé",items:[
+        {type:"point",text:"Gène = portion d'ADN portant une information héréditaire"},
+        {type:"point",text:"Allèle = forme particulière d'un gène"},
+        {type:"point",text:"Génotype = constitution génétique | Phénotype = ce qu'on observe"},
+        {type:"formule",text:"Humain = 46 chromosomes = 23 paires"},
+        {type:"piege",text:"Mitose (croissance, 46chr→46chr) ≠ Méiose (gamètes, 46chr→23chr)"},
+      ]},
+    ]},
+    {theme:"🌱 Écologie",content:[
+      {type:"section",title:"🔑 Définitions",items:[
+        {type:"point",text:"Écosystème = biocénose (vivants) + biotope (milieu physique)"},
+        {type:"point",text:"Chaîne alimentaire : toujours base = producteur (plante)"},
+        {type:"formule",text:"3 niveaux de biodiversité : génétique / spécifique / écosystèmes"},
+        {type:"astuce",text:"L'effet de serre NATUREL ≠ problème. C'est son amplification par l'homme !"},
+        {type:"piege",text:"Sans effet de serre, la Terre serait à -18°C (actuellement +15°C en moyenne)"},
+      ]},
+    ]},
+  ],
+  phys:[
+    {theme:"⚡ Électricité",content:[
+      {type:"section",title:"🔑 Formules",items:[
+        {type:"formule",text:"Loi d'Ohm : U = R × I"},
+        {type:"formule",text:"Puissance : P = U × I (en Watts)"},
+        {type:"formule",text:"Énergie : E = P × t (en Joules)"},
+      ]},
+      {type:"section",title:"⚡ Série vs Dérivation",items:[
+        {type:"point",text:"Série : I identique partout, tensions s'additionnent"},
+        {type:"point",text:"Dérivation : U identique partout, intensités s'additionnent"},
+        {type:"piege",text:"Effet Joule = chaleur perdue dans les câbles. P = R × I²"},
+      ]},
+    ]},
+    {theme:"🔭 Mécanique",content:[
+      {type:"section",title:"🔑 Les 3 lois de Newton",items:[
+        {type:"formule",text:"1ère loi (inertie) : ΣF = 0 → MRU ou repos"},
+        {type:"formule",text:"2ème loi : F = m × a"},
+        {type:"formule",text:"3ème loi (réciproque) : action = -réaction"},
+        {type:"formule",text:"Énergie cinétique : Ec = ½ × m × v²"},
+        {type:"piege",text:"Masse (kg, constante) ≠ Poids (N = m×g, dépend de la planète)"},
+      ]},
+    ]},
+  ],
+  geo:[
+    {theme:"🌐 Mondialisation",content:[
+      {type:"section",title:"🔑 Acteurs clés",items:[
+        {type:"point",text:"FMN = entreprise présente dans plusieurs pays (Apple, Toyota...)"},
+        {type:"point",text:"La triade : USA + Europe Ouest + Japon/Asie-Pacifique"},
+        {type:"point",text:"BRICS : Brésil, Russie, Inde, Chine, Afrique du Sud"},
+        {type:"formule",text:"90% des échanges mondiaux passent par la mer"},
+        {type:"astuce",text:"Mégapole = ville de + de 10 millions d'habitants"},
+      ]},
+    ]},
+    {theme:"🌿 Développement durable",content:[
+      {type:"section",title:"🔑 Définitions",items:[
+        {type:"formule",text:"DD (Brundtland 1987) = répondre aux besoins du présent sans compromettre ceux des générations futures"},
+        {type:"point",text:"3 piliers : économique + social + environnemental"},
+        {type:"point",text:"Accord de Paris (2015) : limiter le réchauffement à +1,5°C/2°C"},
+        {type:"astuce",text:"Empreinte carbone d'un Français ≈ 10 t CO₂/an. Objectif : 2 t"},
+      ]},
+    ]},
+  ],
+  emc:[
+    {theme:"🗳️ Démocratie",content:[
+      {type:"section",title:"🔑 Textes fondamentaux",items:[
+        {type:"formule",text:"DDHC : 26 août 1789 → droits naturels contre l'Ancien Régime"},
+        {type:"formule",text:"DUDH : 10 décembre 1948 (ONU) → droits universels"},
+        {type:"formule",text:"Loi 1905 → séparation Église/État = laïcité"},
+        {type:"point",text:"Suffrage universel masculin : 1848 | féminin : 1944"},
+        {type:"point",text:"Séparation des pouvoirs (Montesquieu) : législatif + exécutif + judiciaire"},
+        {type:"piege",text:"Présomption d'innocence = innocent JUSQU'À preuve du contraire"},
+      ]},
+    ]},
+  ],
+  techno:[
+    {theme:"💻 Numérique",content:[
+      {type:"section",title:"🔑 Algorithmes & code",items:[
+        {type:"point",text:"Algorithme = suite d'instructions pour résoudre un problème"},
+        {type:"formule",text:"Chaîne d'info : Acquérir (capteur) → Traiter → Agir (actionneur)"},
+        {type:"formule",text:"Chaîne d'énergie : Alimenter → Distribuer → Convertir → Transmettre"},
+        {type:"astuce",text:"HTTPS = HTTP sécurisé (chiffré). Le cadenas = connexion sécurisée"},
+        {type:"piege",text:"RGPD (2018) = protection des données perso. Contrôlé par la CNIL"},
+      ]},
+    ]},
+  ],
+};
+
+let REV_SUB='math';
+function showRevision(){
+  if(!CU){showLogin();return;}
+  renderRevision();show('revision-screen');
+}
+function renderRevision(){
+  const sub=REV_SUB;
+  const fiches=FICHES[sub]||[];
+  let html=`<div class="rev-wrap"><div class="rev-header"><button class="btn-bk" onclick="goHome()">←</button><div><h2>📖 Fiches de révision</h2><div style="font-size:.78rem;color:#aaa;font-weight:600;">Points clés à retenir</div></div></div>`;
+  // Sub tabs
+  html+=`<div class="rev-sub-tabs">`;
+  Object.keys(SMETA).forEach(k=>{html+=`<button class="rev-tab${k===sub?' active':''}" onclick="REV_SUB='${k}';renderRevision()">${SMETA[k].icon} ${SMETA[k].name.split(' ')[0]}</button>`;});
+  html+=`</div>`;
+
+  if(!fiches.length){html+=`<div style="text-align:center;padding:40px;color:#aaa;font-weight:700;">Fiche bientôt disponible 🚀</div></div>`;document.getElementById('revision-inner').innerHTML=html;return;}
+
+  fiches.forEach(f=>{
+    html+=`<div class="fiche"><div class="fiche-title">${f.theme}</div>`;
+    f.content.forEach(sec=>{
+      if(sec.type==='section'){
+        html+=`<div class="fiche-section"><h4>${sec.title}</h4>`;
+        sec.items.forEach(item=>{
+          if(item.type==='formule') html+=`<div class="fiche-formule">📌 ${item.text}</div>`;
+          else if(item.type==='exemple') html+=`<div class="fiche-exemple">💡 ${item.text}</div>`;
+          else if(item.type==='piege') html+=`<div class="fiche-piege">⚠️ ${item.text}</div>`;
+          else if(item.type==='astuce') html+=`<div class="fiche-astuce">✅ ${item.text}</div>`;
+          else html+=`<div class="fiche-point"><span class="fp-bullet">▸</span>${item.text}</div>`;
+        });
+        html+=`</div>`;
+      }
+    });
+    html+=`<button class="fiche-print-btn" onclick="printFiche(this)">🖨️ Imprimer cette fiche</button></div>`;
+  });
+  html+=`<div style="height:20px"></div></div>`;
+  document.getElementById('revision-inner').innerHTML=html;
+}
+
+/* ════════════════════════
+   TABLEAU DE BORD PROF
+════════════════════════ */
+const PROF_PIN='2026'; // PIN modifiable ici
+let DASH_UNLOCKED=false;
+
+function showProfDashboard(){
+  renderDashboard();show('prof-dashboard-screen');
+}
+function renderDashboard(){
+  if(!DASH_UNLOCKED){
+    document.getElementById('prof-dashboard-inner').innerHTML=`
+      <div class="dash-wrap">
+        <div class="dash-header">
+          <button class="btn-bk" onclick="goHome()">←</button>
+          <h2>👨‍🏫 Espace Professeur</h2>
+        </div>
+        <div class="dash-lock">
+          <div class="dl-ico">🔐</div>
+          <h3>Accès réservé</h3>
+          <p>Entre le code PIN pour accéder au tableau de bord</p>
+          <div class="dash-pin-row">
+            <input type="password" maxlength="1" id="p1" oninput="movePinFocus(this,'p2')" inputmode="numeric">
+            <input type="password" maxlength="1" id="p2" oninput="movePinFocus(this,'p3')" inputmode="numeric">
+            <input type="password" maxlength="1" id="p3" oninput="movePinFocus(this,'p4')" inputmode="numeric">
+            <input type="password" maxlength="1" id="p4" oninput="movePinFocus(this,null)" inputmode="numeric">
+          </div>
+          <div id="pin-err" style="color:var(--coral);font-weight:800;font-size:.85rem;display:none;margin-bottom:12px;">❌ Code incorrect</div>
+          <button class="btn-auth" onclick="checkPin()">🔓 Accéder</button>
+          <br><button class="btn-bkp" onclick="goHome()" style="margin-top:10px;width:100%">← Retour</button>
+        </div>
+      </div>`;
+    return;
+  }
+  // Dashboard content
+  const db=loadDB();
+  const users=Object.entries(db.users).map(([id,u])=>({id,...u}));
+  const today=new Date().toDateString();
+  const yesterday=new Date(Date.now()-864e5).toDateString();
+  const activeToday=users.filter(u=>u.dailyDate===today||u.lastLoginDate===today).length;
+  const totalQ=users.reduce((a,u)=>a+Object.values(u.subStats||{}).reduce((b,s)=>b+(s.done||0),0),0);
+  const avgXP=users.length?Math.round(users.reduce((a,u)=>a+u.xp,0)/users.length):0;
+  // Weak subjects across all students
+  const subjectFail={};
+  users.forEach(u=>{
+    Object.entries(u.subStats||{}).forEach(([sub,s])=>{
+      if(!subjectFail[sub])subjectFail[sub]={ok:0,total:0};
+      subjectFail[sub].ok+=s.correct||0;
+      subjectFail[sub].total+=s.done||0;
+    });
+  });
+  const sortedSubs=Object.entries(subjectFail).filter(([,s])=>s.total>0).sort((a,b)=>(a[1].ok/a[1].total)-(b[1].ok/b[1].total));
+  // Inactive students (not seen since 2+ days)
+  const inactive=users.filter(u=>{
+    const d=u.lastLoginDate||u.dailyDate;
+    return d && d!==today && d!==yesterday;
+  });
+
+  let inactiveHTML=inactive.length===0?'<div style="color:var(--mint);font-weight:700;font-size:.85rem;padding:8px;">✅ Tous les élèves ont été actifs récemment !</div>':'';
+  inactive.slice(0,10).forEach(u=>{inactiveHTML+=`<div class="dash-inactive-row">⚠️ ${u.av} <strong>${u.name}</strong> (${u.cls}) — inactif·ve</div>`;});
+
+  let subHTML='';
+  sortedSubs.slice(0,6).forEach(([sub,s])=>{
+    const p=Math.round(s.ok/s.total*100);
+    subHTML+=`<div class="dwb"><div class="dwb-top"><span>${SMETA[sub].icon} ${SMETA[sub].name}</span><span>${p}%</span></div><div class="dwb-bar"><div class="dwb-fill" style="width:${p}%;background:${BCOLORS[sub]}"></div></div></div>`;
+  });
+
+  users.sort((a,b)=>b.xp-a.xp);
+  let studHTML='';
+  users.forEach((u,i)=>{
+    const td=Object.values(u.subStats||{}).reduce((a,s)=>a+(s.done||0),0);
+    const tc=Object.values(u.subStats||{}).reduce((a,s)=>a+(s.correct||0),0);
+    const pct=td>0?Math.round(tc/td*100):0;
+    studHTML+=`<div class="dsr"><div class="dsr-av">${u.av}</div><div class="dsr-info"><div class="dsr-name">#${i+1} ${u.name}</div><div class="dsr-meta">${u.cls} · ${td} questions · ${pct}% réussite</div></div><div class="dsr-right"><div class="dsr-xp">⭐${u.xp}</div><div class="dsr-streak">🔥${u.streak}</div></div></div>`;
+  });
+
+  const profMsg=db.profMsg||'';
+
+  document.getElementById('prof-dashboard-inner').innerHTML=`
+    <div class="dash-wrap">
+      <div class="dash-header">
+        <button class="btn-bk" onclick="goHome()">←</button>
+        <h2>👨‍🏫 Tableau de bord</h2>
+      </div>
+      <div class="dash-body">
+        <div class="dash-stat-grid">
+          <div class="dash-stat"><div class="ds-val">👥 ${users.length}</div><div class="ds-lbl">Élèves inscrits</div></div>
+          <div class="dash-stat"><div class="ds-val">🟢 ${activeToday}</div><div class="ds-lbl">Actifs aujourd'hui</div></div>
+          <div class="dash-stat"><div class="ds-val">❓ ${totalQ}</div><div class="ds-lbl">Questions total</div></div>
+          <div class="dash-stat"><div class="ds-val">⭐ ${avgXP}</div><div class="ds-lbl">XP moyen</div></div>
+        </div>
+        <div class="dash-section">
+          <h3>📢 Message aux élèves</h3>
+          <textarea class="msg-textarea" id="prof-msg-input" placeholder="Ex : Bon courage pour le contrôle de vendredi ! 💪">${profMsg}</textarea>
+          <button class="btn-auth" style="background:linear-gradient(135deg,#2d3436,#636e72)" onclick="saveProfMsg()">💾 Publier le message</button>
+        </div>
+        <div class="dash-section"><h3>📊 Réussite par matière (classe entière)</h3>${subHTML||'<div style="color:#aaa;font-size:.85rem">Pas encore assez de données</div>'}</div>
+        <div class="dash-section"><h3>⚠️ Élèves inactifs</h3>${inactiveHTML}</div>
+        <div class="dash-section"><h3>🏆 Classement élèves</h3>${studHTML||'<div style="color:#aaa;font-size:.85rem">Aucun élève inscrit</div>'}</div>
+        <button class="btn-bkp" onclick="DASH_UNLOCKED=false;goHome()" style="width:100%;margin-top:8px">🔒 Verrouiller & quitter</button>
+        <div style="height:20px"></div>
+      </div>
+    </div>`;
+}
+
+function printFiche(btn){
+  const fiche = btn.closest('.fiche');
+  if(!fiche) return;
+  const subName = SMETA[REV_SUB] ? SMETA[REV_SUB].name : 'Révision';
+  const titleEl = fiche.querySelector('.fiche-title');
+  const titleHTML = titleEl ? '<div class="fiche-title">'+titleEl.innerHTML+'</div>' : '';
+  const bodyHTML = fiche.innerHTML
+    .replace(/<button[^>]*>[\s\S]*?<\/button>/g,'')
+    .replace(/class="fiche-/g,'class="fiche-');
+  const win = window.open('','_blank','width=800,height=600');
+  if(!win){ alert('Autorise les popups pour imprimer !'); return; }
+  const css = [
+    'body{font-family:sans-serif;max-width:700px;margin:30px auto;padding:0 20px;color:#12102A;}',
+    'h1{font-size:1.3rem;font-weight:900;color:#1a1a4e;border-bottom:3px solid #7B2FBE;padding-bottom:8px;margin-bottom:20px;}',
+    '.fiche-title{font-size:1.2rem;font-weight:900;color:#12102A;margin-bottom:16px;}',
+    '.fiche-section h4{font-size:.9rem;font-weight:800;color:#7B2FBE;margin:12px 0 6px;}',
+    '.fiche-formule{background:#f0e8ff;border-radius:6px;padding:7px 12px;margin:5px 0;font-weight:800;color:#1a1a4e;border:1px solid #d0c8ff;}',
+    '.fiche-exemple{background:#fffbe6;border-radius:6px;padding:6px 10px;margin:4px 0;border-left:3px solid #FFA502;}',
+    '.fiche-piege{background:#fff0f0;border-radius:6px;padding:6px 10px;margin:4px 0;border-left:3px solid #FF4757;}',
+    '.fiche-astuce{background:#edfff5;border-radius:6px;padding:6px 10px;margin:4px 0;border-left:3px solid #2ED573;}',
+    '.fiche-point{padding:5px 0;border-bottom:1px solid #f0eaff;font-size:.85rem;}',
+    '.fp-bullet{color:#7B2FBE;margin-right:6px;}',
+    '.footer{margin-top:30px;font-size:.72rem;color:#aaa;text-align:center;border-top:1px solid #eee;padding-top:10px;}',
+    '.fiche-print-btn{display:none;}',
+    '@media print{body{margin:8px;}}'
+  ].join('\n');
+  win.document.write('<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">');
+  win.document.write('<title>Fiche — ' + subName + '</title>');
+  win.document.write('<style>' + css + '</style></head><body>');
+  win.document.write('<h1>📚 Collège Jean Burger — Fiche de révision Brevet 2026</h1>');
+  win.document.write(titleHTML);
+  win.document.write(bodyHTML);
+  win.document.write('<div class="footer">S.T.E.V.E — Collège Jean Burger · Brevet 2026</div>');
+  win.document.write('<scr'+'ipt>window.onload=function(){window.print();window.onafterprint=function(){window.close();}}<\/scr'+'ipt>');
+  win.document.write('</body></html>');
+  win.document.close();
+}
+function movePinFocus(el,nextId){
+  if(el.value.length===1&&nextId){document.getElementById(nextId).focus();}
+  if(!nextId){checkPin();}
+}
+function checkPin(){
+  const pin=['p1','p2','p3','p4'].map(id=>{const el=document.getElementById(id);return el?el.value:''}).join('');
+  if(pin===PROF_PIN){DASH_UNLOCKED=true;renderDashboard();}
+  else{const err=document.getElementById('pin-err');if(err){err.style.display='block';setTimeout(()=>err.style.display='none',2000);}}
+}
+function saveProfMsg(){
+  const msg=document.getElementById('prof-msg-input').value.trim();
+  const db=loadDB();db.profMsg=msg;saveDB(db);
+  const btn=event.target;btn.textContent='✅ Publié !';
+  setTimeout(()=>btn.textContent='💾 Publier le message',2000);
+  renderProfMsg();
+}
 </script>
 </body>
 </html>
