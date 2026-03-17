@@ -478,8 +478,6 @@ header{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);padding:11px 14px;disp
 #rgpd-banner .rgpd-accept{background:linear-gradient(135deg,#2ED573,#00a07a);color:#fff;border:none;border-radius:10px;padding:10px 20px;font-family:'Baloo 2',cursive;font-size:.95rem;font-weight:800;cursor:pointer;}
 #rgpd-banner .rgpd-refuse{background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.4);border-radius:10px;padding:10px 20px;font-family:'Baloo 2',cursive;font-size:.95rem;font-weight:800;cursor:pointer;}
 #rgpd-banner .rgpd-more{background:none;color:rgba(255,255,255,.7);border:none;font-size:.78rem;font-weight:700;cursor:pointer;text-decoration:underline;align-self:center;}
-
-/* Modal politique */
 #rgpd-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10000;display:none;align-items:center;justify-content:center;}
 #rgpd-modal-overlay.open{display:flex;}
 #rgpd-modal{background:#fff;border-radius:20px;padding:28px 24px;max-width:480px;width:92%;max-height:80vh;overflow-y:auto;font-family:'Nunito',sans-serif;box-shadow:0 20px 60px rgba(0,0,0,.3);}
@@ -488,15 +486,9 @@ header{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);padding:11px 14px;disp
 #rgpd-modal p,#rgpd-modal li{font-size:.83rem;font-weight:600;color:#444;line-height:1.6;}
 #rgpd-modal ul{padding-left:18px;margin:4px 0;}
 #rgpd-modal .modal-close{display:block;margin-top:20px;width:100%;padding:12px;background:linear-gradient(135deg,#1a1a4e,#7B2FBE);color:#fff;border:none;border-radius:12px;font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;cursor:pointer;}
-
-/* Bouton supprimer compte dans profil */
 .btn-delete-account{display:block;width:calc(100% - 28px);margin:0 14px 10px;padding:13px;background:linear-gradient(135deg,#FF4757,#c0392b);color:#fff;border:none;border-radius:14px;font-family:'Baloo 2',cursive;font-size:.95rem;font-weight:800;cursor:pointer;box-shadow:0 4px 0 rgba(192,57,43,.4);}
 .btn-delete-account:active{transform:translateY(4px);box-shadow:none;}
-
-/* Lien politique dans profil */
 .rgpd-link{display:block;text-align:center;font-size:.75rem;font-weight:700;color:#aaa;margin:4px 14px 14px;cursor:pointer;text-decoration:underline;}
-
-/* Checkbox RGPD dans le register */
 .rgpd-check-wrap{display:flex;align-items:flex-start;gap:10px;margin:10px 0 6px;padding:10px 12px;background:#f5f0ff;border-radius:12px;border:2px solid #E0D9FF;}
 .rgpd-check-wrap input[type=checkbox]{width:20px;height:20px;flex-shrink:0;margin-top:1px;accent-color:#7B2FBE;cursor:pointer;}
 .rgpd-check-wrap label{font-size:.78rem;font-weight:700;color:#555;line-height:1.4;cursor:pointer;}
@@ -587,7 +579,7 @@ header{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);padding:11px 14px;disp
       <div id="reg-err" class="auth-err"></div>
       <div class="rgpd-check-wrap">
   <input type="checkbox" id="rgpd-reg-consent">
-  <label for="rgpd-reg-consent">J'ai lu et j'accepte la <span onclick="openRgpdModal()">politique de confidentialité</span>. Je comprends que mes données (prénom, classe, scores) seront stockées pour suivre ma progression. ✅</label>
+  <label for="rgpd-reg-consent">J'accepte la <span onclick="openRgpdModal()">politique de confidentialité</span> — mes données (prénom, classe, scores) sont stockées pour suivre ma progression ✅</label>
 </div>
 <button class="btn-auth" onclick="doRegister()" style="margin-top:14px;">🚀 Go réviser !</button>
     </div>
@@ -723,8 +715,8 @@ header{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);padding:11px 14px;disp
     </div>
   </div>
   <button class="btn-home" onclick="goHome()">🏠 Retour à l'accueil</button>
-<button class='btn-delete-account' onclick='deleteMyAccount()'>🗑️ Supprimer mon compte</button>
-<span class='rgpd-link' onclick='openRgpdModal()'>🔒 Politique de confidentialité (RGPD)</span>
+<button class=\'btn-delete-account\' onclick=\'deleteMyAccount()\'>🗑️ Supprimer mon compte</button>
+<span class=\'rgpd-link\' onclick=\'openRgpdModal()\'>🔒 Politique de confidentialité</span>
 </div>
 
 <!-- ═══ MODE RÉVISION ═══ -->
@@ -1388,6 +1380,15 @@ function pickAv(el){
   el.classList.add('sel');SEL_AV=el.dataset.av;SEL_VIBE=el.dataset.vibe||'';
 }
 async function doRegister(){
+  var chk=document.getElementById('rgpd-reg-consent');
+  if(chk && !chk.checked){
+    var err=document.getElementById('reg-err');
+    err.textContent='⚠️ Accepte la politique de confidentialité pour créer un compte.';
+    err.style.display='block';
+    return;
+  }
+  localStorage.setItem('rgpd-consent','accepted');
+  document.getElementById('rgpd-banner').style.display='none';
   const name=document.getElementById('reg-name').value.trim();
   const cls=document.getElementById('reg-class').value;
   const err=document.getElementById('reg-err');
@@ -2932,42 +2933,41 @@ function printFiche(btn){
   win.document.write('
 <!-- ====== BANNIÈRE RGPD ====== -->
 <div id="rgpd-banner" style="display:none;">
-  <p>🔒 Ce site utilise le <strong>localStorage</strong> de ton navigateur pour sauvegarder ta progression (prénom, classe, scores, historique). Il communique également avec <strong>JSONBin.io</strong> (classement partagé) et <strong>api.qrserver.com</strong> (génération de QR code). Aucune donnée n'est vendue ni utilisée à des fins commerciales.</p>
+  <p>🔒 Ce site sauvegarde ta progression (prénom, classe, scores) dans ton navigateur via <strong>localStorage</strong>. Il utilise aussi <strong>JSONBin.io</strong> (classement) et <strong>api.qrserver.com</strong> (QR code). Aucune donnée n'est vendue.</p>
   <div class="rgpd-btns">
     <button class="rgpd-accept" onclick="rgpdAccept()">✅ J'accepte</button>
     <button class="rgpd-refuse" onclick="rgpdRefuse()">❌ Refuser</button>
     <button class="rgpd-more" onclick="openRgpdModal()">En savoir plus</button>
   </div>
 </div>
-
 <!-- ====== MODAL POLITIQUE ====== -->
-<div id="rgpd-modal-overlay" onclick="closeRgpdModal(event)">
+<div id="rgpd-modal-overlay" onclick="if(event.target===this)closeRgpdModal()">
   <div id="rgpd-modal">
     <h2>🔒 Politique de confidentialité</h2>
     <h3>Qui sommes-nous ?</h3>
-    <p>Ce site est un outil de révision pour le Brevet 2026 du Collège Jean Burger. Il ne collecte aucune donnée à des fins commerciales.</p>
+    <p>Outil de révision Brevet 2026 — Collège Jean Burger. Aucune donnée collectée à des fins commerciales.</p>
     <h3>Données collectées</h3>
     <ul>
-      <li><strong>Prénom et classe</strong> – pour personnaliser l'expérience</li>
-      <li><strong>Scores et historique de révision</strong> – pour suivre ta progression</li>
-      <li><strong>Streak (flammes) et XP</strong> – pour la gamification</li>
+      <li><strong>Prénom et classe</strong> — personnalisation</li>
+      <li><strong>Scores et historique</strong> — suivi de progression</li>
+      <li><strong>Streak et XP</strong> — gamification</li>
     </ul>
-    <h3>Où sont stockées tes données ?</h3>
-    <p>Tes données sont stockées dans le <strong>localStorage</strong> de ton navigateur (sur ton appareil) et, si la clé API est configurée, synchronisées sur <strong>JSONBin.io</strong> (service externe sécurisé) pour le classement partagé.</p>
+    <h3>Stockage</h3>
+    <p>Données stockées dans le <strong>localStorage</strong> de ton navigateur et, si configuré, sur <strong>JSONBin.io</strong> pour le classement partagé.</p>
     <h3>Services tiers</h3>
     <ul>
-      <li><strong>JSONBin.io</strong> – stockage cloud du classement</li>
-      <li><strong>api.qrserver.com</strong> – génération du QR code de partage</li>
-      <li><strong>Google Fonts</strong> – polices d'écriture</li>
+      <li><strong>JSONBin.io</strong> — classement cloud</li>
+      <li><strong>api.qrserver.com</strong> — génération QR code</li>
+      <li><strong>Google Fonts</strong> — polices</li>
     </ul>
     <h3>Tes droits (RGPD)</h3>
     <ul>
-      <li>✅ <strong>Accès</strong> – tu vois toutes tes données dans ton profil</li>
-      <li>✅ <strong>Suppression</strong> – bouton « Supprimer mon compte » dans ton profil</li>
-      <li>✅ <strong>Retrait du consentement</strong> – bouton « Refuser » ci-dessous</li>
+      <li>✅ <strong>Accès</strong> — visible dans ton profil</li>
+      <li>✅ <strong>Suppression</strong> — bouton dans ton profil</li>
+      <li>✅ <strong>Retrait du consentement</strong> — effacer les données du navigateur</li>
     </ul>
-    <h3>Données des mineurs</h3>
-    <p>Ce site s'adresse à des élèves de collège (mineurs). Seul un prénom (pas le nom) et une classe sont demandés. Aucune adresse e-mail ni donnée sensible n'est collectée.</p>
+    <h3>Mineurs</h3>
+    <p>Seul un prénom et une classe sont demandés. Pas de nom de famille, pas d'email, pas de donnée sensible.</p>
     <button class="modal-close" onclick="closeRgpdModal()">Fermer</button>
   </div>
 </div>
@@ -2993,56 +2993,42 @@ function saveProfMsg(){
 }
 
 // ===================== RGPD =====================
-function rgpdInit() {
-  const consent = localStorage.getItem('rgpd-consent');
-  if (consent === null) {
-    document.getElementById('rgpd-banner').style.display = 'block';
-  }
+function rgpdAccept(){
+  localStorage.setItem('rgpd-consent','accepted');
+  document.getElementById('rgpd-banner').style.display='none';
 }
-function rgpdAccept() {
-  localStorage.setItem('rgpd-consent', 'accepted');
-  document.getElementById('rgpd-banner').style.display = 'none';
+function rgpdRefuse(){
+  localStorage.setItem('rgpd-consent','refused');
+  document.getElementById('rgpd-banner').style.display='none';
+  alert("Tu as refusé le stockage. Aucune progression ne sera sauvegardée. Tu peux quand même réviser !");
 }
-function rgpdRefuse() {
-  localStorage.setItem('rgpd-consent', 'refused');
-  document.getElementById('rgpd-banner').style.display = 'none';
-  alert("Tu as refusé le stockage de données. Aucune progression ne sera sauvegardée. Tu peux utiliser le site en mode découverte, mais les scores ne seront pas enregistrés.");
-}
-function openRgpdModal(e) {
+function openRgpdModal(){
   document.getElementById('rgpd-modal-overlay').classList.add('open');
 }
-function closeRgpdModal(e) {
-  if (!e || e.target === document.getElementById('rgpd-modal-overlay') || !e.target) {
-    document.getElementById('rgpd-modal-overlay').classList.remove('open');
-  }
+function closeRgpdModal(){
+  document.getElementById('rgpd-modal-overlay').classList.remove('open');
 }
-function deleteMyAccount() {
-  if (!confirm("⚠️ Supprimer ton compte ? Toutes tes données (progression, scores, historique) seront effacées définitivement.")) return;
-  if (!CID) return;
-  const db = JSON.parse(localStorage.getItem('bv3cache') || '{"users":{}}');
-  if (db.users && db.users[CID]) {
-    delete db.users[CID];
-    localStorage.setItem('bv3cache', JSON.stringify(db));
-    dbCache = db;
-    saveDB(db);
-  }
-  // Effacer les données de session
+function deleteMyAccount(){
+  if(!CID) return;
+  if(!confirm("⚠️ Supprimer ton compte ? Toutes tes données seront effacées définitivement.")) return;
+  try {
+    var db = JSON.parse(localStorage.getItem('bv3_cache') || '{"users":{}}');
+    if(db.users && db.users[CID]) delete db.users[CID];
+    localStorage.setItem('bv3_cache', JSON.stringify(db));
+    _dbCache = db;
+  } catch(e){}
   CU = null; CID = null;
   localStorage.removeItem('rgpd-consent');
   document.getElementById('hdr-av').textContent = '?';
   document.getElementById('hdr-streak').textContent = '0';
-  alert("✅ Ton compte a bien été supprimé.");
+  alert("✅ Compte supprimé.");
   showLogin();
 }
-// Vérifier le consentement avant de sauvegarder
-const _origSaveDB = saveDB;
-saveDB = function(d) {
-  const consent = localStorage.getItem('rgpd-consent');
-  if (consent === 'refused') return; // Ne pas sauvegarder si refusé
-  _origSaveDB(d);
-};
-// Lancer la vérification RGPD au démarrage
-window.addEventListener('DOMContentLoaded', rgpdInit);
+window.addEventListener('DOMContentLoaded', function(){
+  if(localStorage.getItem('rgpd-consent') === null){
+    document.getElementById('rgpd-banner').style.display = 'block';
+  }
+});
 // ===============================================
 
 </script>
