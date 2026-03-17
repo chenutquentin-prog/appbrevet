@@ -470,28 +470,6 @@ header{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);padding:11px 14px;disp
 .parcours-cta .pc-text .pc-title{font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:900;color:#fff;}
 .parcours-cta .pc-text .pc-sub{font-size:.78rem;color:rgba(255,255,255,.85);font-weight:600;}
 .parcours-cta .pc-arrow{margin-left:auto;color:#fff;font-size:1.3rem;font-weight:900;}
-/* ====== RGPD ====== */
-#rgpd-banner{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,#1a1a4e,#7B2FBE);color:#fff;padding:16px 20px;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,.3);font-family:'Nunito',sans-serif;}
-#rgpd-banner p{font-size:.82rem;font-weight:600;margin:0 0 12px;opacity:.92;line-height:1.5;}
-#rgpd-banner .rgpd-btns{display:flex;gap:10px;flex-wrap:wrap;}
-#rgpd-banner .rgpd-accept{background:linear-gradient(135deg,#2ED573,#00a07a);color:#fff;border:none;border-radius:10px;padding:10px 20px;font-family:'Baloo 2',cursive;font-size:.95rem;font-weight:800;cursor:pointer;}
-#rgpd-banner .rgpd-refuse{background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.4);border-radius:10px;padding:10px 20px;font-family:'Baloo 2',cursive;font-size:.95rem;font-weight:800;cursor:pointer;}
-#rgpd-banner .rgpd-more{background:none;color:rgba(255,255,255,.7);border:none;font-size:.78rem;font-weight:700;cursor:pointer;text-decoration:underline;align-self:center;}
-#rgpd-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10000;display:none;align-items:center;justify-content:center;}
-#rgpd-modal-overlay.open{display:flex;}
-#rgpd-modal{background:#fff;border-radius:20px;padding:28px 24px;max-width:480px;width:92%;max-height:80vh;overflow-y:auto;font-family:'Nunito',sans-serif;}
-#rgpd-modal h2{font-family:'Baloo 2',cursive;font-size:1.3rem;font-weight:900;color:#1a1a4e;margin-bottom:14px;}
-#rgpd-modal h3{font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;color:#7B2FBE;margin:14px 0 6px;}
-#rgpd-modal p,#rgpd-modal li{font-size:.83rem;font-weight:600;color:#444;line-height:1.6;}
-#rgpd-modal ul{padding-left:18px;margin:4px 0;}
-#rgpd-modal .modal-close{display:block;margin-top:20px;width:100%;padding:12px;background:linear-gradient(135deg,#1a1a4e,#7B2FBE);color:#fff;border:none;border-radius:12px;font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;cursor:pointer;}
-.btn-delete-account{display:block;width:calc(100% - 28px);margin:10px 14px;padding:13px;background:linear-gradient(135deg,#FF4757,#c0392b);color:#fff;border:none;border-radius:14px;font-family:'Baloo 2',cursive;font-size:.95rem;font-weight:800;cursor:pointer;}
-.rgpd-link{display:block;text-align:center;font-size:.75rem;font-weight:700;color:#aaa;margin:4px 14px 14px;cursor:pointer;text-decoration:underline;}
-.rgpd-check-wrap{display:flex;align-items:flex-start;gap:10px;margin:10px 0 6px;padding:10px 12px;background:#f5f0ff;border-radius:12px;border:2px solid #E0D9FF;}
-.rgpd-check-wrap input[type=checkbox]{width:20px;height:20px;flex-shrink:0;margin-top:1px;accent-color:#7B2FBE;cursor:pointer;}
-.rgpd-check-wrap label{font-size:.78rem;font-weight:700;color:#555;line-height:1.4;cursor:pointer;}
-.rgpd-check-wrap label span{color:#7B2FBE;text-decoration:underline;cursor:pointer;}
-
 </style>
 </head>
 <body>
@@ -2909,81 +2887,7 @@ function printFiche(btn){
   win.document.write('<style>' + css + '</style></head><body>');
   win.document.write('<h1>📚 Collège Jean Burger — Fiche de révision Brevet 2026</h1>');
   win.document.write(titleHTML);
-  // ====== RGPD ======
-function rgpdAccept(){
-  localStorage.setItem('rgpd-consent','accepted');
-  document.getElementById('rgpd-banner').style.display='none';
-}
-function rgpdRefuse(){
-  localStorage.setItem('rgpd-consent','refused');
-  document.getElementById('rgpd-banner').style.display='none';
-  alert("Refus enregistré. Aucune progression ne sera sauvegardée.");
-}
-function openRgpdModal(){
-  document.getElementById('rgpd-modal-overlay').classList.add('open');
-}
-function closeRgpdModal(){
-  document.getElementById('rgpd-modal-overlay').classList.remove('open');
-}
-function deleteMyAccount(){
-  if(!CID) return;
-  if(!confirm("⚠️ Supprimer ton compte ? Toutes tes données seront effacées.")) return;
-  try {
-    var db = JSON.parse(localStorage.getItem('bv3_cache')||'{"users":{}}');
-    if(db.users && db.users[CID]) delete db.users[CID];
-    localStorage.setItem('bv3_cache', JSON.stringify(db));
-    _dbCache = db;
-  } catch(e){}
-  CU=null; CID=null;
-  localStorage.removeItem('rgpd-consent');
-  alert("✅ Compte supprimé.");
-  showLogin();
-}
-window.addEventListener('DOMContentLoaded', function(){
-  if(localStorage.getItem('rgpd-consent')===null){
-    document.getElementById('rgpd-banner').style.display='block';
-  }
-});
-// ==================
-
   win.document.write(bodyHTML);
-  <!-- BANNIÈRE RGPD -->
-<div id="rgpd-banner" style="display:none;">
-  <p>🔒 Ce site sauvegarde ta progression (prénom, classe, scores) via <strong>localStorage</strong> et <strong>JSONBin.io</strong>. Aucune donnée vendue.</p>
-  <div class="rgpd-btns">
-    <button class="rgpd-accept" onclick="rgpdAccept()">✅ J'accepte</button>
-    <button class="rgpd-refuse" onclick="rgpdRefuse()">❌ Refuser</button>
-    <button class="rgpd-more" onclick="openRgpdModal()">En savoir plus</button>
-  </div>
-</div>
-
-<!-- MODAL POLITIQUE -->
-<div id="rgpd-modal-overlay" onclick="if(event.target===this)closeRgpdModal()">
-  <div id="rgpd-modal">
-    <h2>🔒 Politique de confidentialité</h2>
-    <h3>Données collectées</h3>
-    <ul>
-      <li><strong>Prénom et classe</strong> — personnalisation</li>
-      <li><strong>Scores et historique</strong> — suivi de progression</li>
-      <li><strong>Streak et XP</strong> — gamification</li>
-    </ul>
-    <h3>Services tiers</h3>
-    <ul>
-      <li><strong>JSONBin.io</strong> — classement cloud</li>
-      <li><strong>api.qrserver.com</strong> — QR code</li>
-      <li><strong>Google Fonts</strong> — polices</li>
-    </ul>
-    <h3>Tes droits (RGPD)</h3>
-    <ul>
-      <li>✅ <strong>Accès</strong> — visible dans ton profil</li>
-      <li>✅ <strong>Suppression</strong> — bouton "Supprimer mon compte" dans le profil</li>
-    </ul>
-    <h3>Mineurs</h3>
-    <p>Seul un prénom et une classe sont demandés. Pas de nom, pas d'email.</p>
-    <button class="modal-close" onclick="closeRgpdModal()">Fermer</button>
-  </div>
-</div>
-
   win.document.write('<div class="footer">S.T.E.V.E — Collège Jean Burger · Brevet 2026</div>');
   win.document.write('<scr'+'ipt>window.onload=function(){window.print();window.onafterprint=function(){window.close();}}<\/scr'+'ipt>');
   win.document.write('</body></html>');
