@@ -210,32 +210,6 @@ header{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);padding:11px 14px;disp
 .hist-list::-webkit-scrollbar-thumb{background:#ddd;border-radius:10px;}
 
 /* ══ LEADERBOARD ══ */
-.lb-wrap{max-width:480px;margin:0 auto;padding:0 0 30px;}
-.lb-header{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);padding:16px 16px 20px;display:flex;align-items:center;gap:12px;margin-bottom:-10px;}
-.lb-header h2{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;color:#fff;}
-.lb-header .btn-bk{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.3);color:#fff;}
-.lb-podium{display:flex;align-items:flex-end;justify-content:center;gap:8px;padding:20px 16px 0;background:linear-gradient(180deg,#7B2FBE 0%,var(--bg) 100%);min-height:180px;}
-.podium-item{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;max-width:110px;}
-.podium-av{font-size:2rem;width:54px;height:54px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.2);}
-.podium-name{font-family:'Baloo 2',cursive;font-size:.78rem;font-weight:800;color:#fff;text-align:center;max-width:90px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.podium-xp{font-size:.68rem;font-weight:700;color:rgba(255,255,255,.8);}
-.podium-block{border-radius:12px 12px 0 0;width:100%;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-size:1.6rem;font-weight:900;color:#fff;}
-.podium-block.p1{height:90px;background:linear-gradient(135deg,#f9ca24,#f0932b);box-shadow:0 -4px 0 rgba(249,202,36,.5);}
-.podium-block.p2{height:65px;background:linear-gradient(135deg,#dfe6e9,#b2bec3);box-shadow:0 -4px 0 rgba(178,190,195,.5);}
-.podium-block.p3{height:50px;background:linear-gradient(135deg,#e17055,#d35400);box-shadow:0 -4px 0 rgba(211,84,0,.5);}
-.lb-list{display:flex;flex-direction:column;gap:6px;padding:14px 16px;}
-.lb-row{display:flex;align-items:center;gap:11px;background:#fff;border-radius:14px;padding:11px 14px;box-shadow:0 3px 0 #e0d0f0;border:2px solid #ede8ff;}
-.lb-row.me{border-color:#7B2FBE;background:#f5eeff;}
-.lb-rank{font-family:'Baloo 2',cursive;font-size:1rem;font-weight:900;color:#aaa;width:24px;text-align:center;}
-.lb-av{font-size:1.5rem;width:38px;height:38px;background:#f0f4ff;border-radius:10px;display:flex;align-items:center;justify-content:center;}
-.lb-info{flex:1;}
-.lb-uname{font-family:'Baloo 2',cursive;font-size:.95rem;font-weight:800;color:var(--dark);}
-.lb-ucls{font-size:.72rem;color:#aaa;font-weight:600;}
-.lb-score{text-align:right;}
-.lb-xp{font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;color:#7B2FBE;}
-.lb-streak{font-size:.72rem;color:#aaa;font-weight:600;}
-.lb-empty{text-align:center;padding:30px;color:#bbb;font-weight:700;}
-
 /* ══ EXAMEN BLANC ══ */
 .exam-wrap{max-width:580px;margin:0 auto;padding:14px;}
 .exam-intro{text-align:center;padding:20px 16px;}
@@ -350,46 +324,6 @@ header{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);padding:11px 14px;disp
 .streak-popup .sp-label{font-size:.82rem;color:#aaa;font-weight:700;margin-bottom:18px;}
 .streak-popup p{font-size:.9rem;color:#666;font-weight:600;margin-bottom:18px;}
 .streak-popup .sp-btn{width:100%;padding:14px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--amber),var(--coral));color:#fff;font-family:'Baloo 2',cursive;font-size:1.05rem;font-weight:800;cursor:pointer;box-shadow:0 5px 0 rgba(255,165,2,.4);}
-
-/* ══ TEACHER DASHBOARD ══ */
-.dash-wrap{max-width:600px;margin:0 auto;padding:0 0 40px;}
-.dash-header{background:linear-gradient(135deg,#2d3436,#636e72);padding:18px 16px;display:flex;align-items:center;gap:12px;}
-.dash-header h2{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;color:#fff;}
-.dash-header .btn-bk{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.3);color:#fff;}
-.dash-lock{padding:40px 20px;text-align:center;}
-.dash-lock .dl-ico{font-size:4rem;margin-bottom:12px;}
-.dash-lock h3{font-family:'Baloo 2',cursive;font-size:1.3rem;font-weight:800;color:var(--dark);margin-bottom:6px;}
-.dash-lock p{font-size:.85rem;color:#aaa;font-weight:600;margin-bottom:20px;}
-.dash-pin-row{display:flex;gap:10px;justify-content:center;margin-bottom:16px;}
-.dash-pin-row input{width:52px;height:60px;border-radius:12px;border:3px solid #E0D9FF;font-size:1.6rem;font-weight:900;text-align:center;font-family:'Baloo 2',cursive;color:var(--dark);outline:none;transition:.15s;}
-.dash-pin-row input:focus{border-color:#7B2FBE;box-shadow:0 0 0 3px rgba(123,47,190,.15);}
-.dash-body{padding:14px;}
-.dash-stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px;}
-.dash-stat{background:#fff;border-radius:16px;padding:16px;text-align:center;box-shadow:0 4px 0 #d9d0f0;border:3px solid #ede8ff;}
-.dash-stat .ds-val{font-family:'Baloo 2',cursive;font-size:2.2rem;font-weight:900;color:var(--dark);}
-.dash-stat .ds-lbl{font-size:.72rem;color:#aaa;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
-.dash-section{background:#fff;border-radius:16px;padding:16px;box-shadow:0 4px 0 #d9d0f0;border:3px solid #ede8ff;margin-bottom:12px;}
-.dash-section h3{font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:12px;}
-.dsr{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #f5f0ff;}
-.dsr:last-child{border-bottom:none;}
-.dsr-av{font-size:1.3rem;width:36px;height:36px;background:#f0f4ff;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.dsr-info{flex:1;}
-.dsr-name{font-size:.88rem;font-weight:800;color:var(--dark);}
-.dsr-meta{font-size:.7rem;color:#aaa;font-weight:600;}
-.dsr-right{text-align:right;}
-.dsr-xp{font-family:'Baloo 2',cursive;font-size:.9rem;font-weight:800;color:#7B2FBE;}
-.dsr-streak{font-size:.7rem;color:#aaa;}
-.dwb{margin-bottom:9px;}
-.dwb-top{display:flex;justify-content:space-between;font-size:.78rem;font-weight:700;color:var(--dark);margin-bottom:4px;}
-.dwb-bar{background:#eee;border-radius:20px;height:10px;overflow:hidden;}
-.dwb-fill{height:100%;border-radius:20px;}
-.dash-inactive-row{background:#fff8f0;border-radius:12px;padding:10px 14px;border:2px solid #ffe0b2;font-size:.82rem;font-weight:700;color:#e67e22;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
-.msg-textarea{width:100%;padding:11px 14px;border-radius:11px;border:3px solid #E0D9FF;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:600;color:var(--dark);outline:none;resize:none;height:80px;margin-bottom:10px;transition:.15s;}
-.msg-textarea:focus{border-color:#7B2FBE;}
-.msg-banner{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);border-radius:14px;padding:12px 16px;margin:0 14px 10px;display:flex;align-items:center;gap:10px;}
-.msg-banner .mb-ico{font-size:1.3rem;flex-shrink:0;}
-.msg-banner .mb-text{font-size:.85rem;font-weight:700;color:#fff;flex:1;}
-.msg-banner .mb-close{color:rgba(255,255,255,.6);font-size:.85rem;cursor:pointer;font-weight:800;padding:4px;}
 
 .parcours-wrap{max-width:420px;margin:0 auto;padding:14px 14px 40px;}
 .parcours-header{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
@@ -640,26 +574,14 @@ header{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);padding:11px 14px;disp
     <span class="pc-arrow">›</span>
   </button>
   <div style="display:flex;gap:10px;padding:0 14px 10px;">
-    <button class="parcours-cta" style="background:linear-gradient(135deg,#1a1a4e,#7B2FBE);box-shadow:0 5px 0 rgba(123,47,190,.35);flex:1;" onclick="showLeaderboard()">
-      <span class="pc-ico" style="font-size:1.6rem;">🏆</span>
-      <div class="pc-text"><div class="pc-title" style="font-size:.95rem;">Classement</div></div>
-      <span class="pc-arrow">›</span>
-    </button>
     <button class="parcours-cta" style="background:linear-gradient(135deg,#00b894,#00cec9);box-shadow:0 5px 0 rgba(0,184,148,.35);flex:1;" onclick="showQR()">
       <span class="pc-ico" style="font-size:1.6rem;">📱</span>
       <div class="pc-text"><div class="pc-title" style="font-size:.95rem;">QR Code</div></div>
       <span class="pc-arrow">›</span>
     </button>
-  </div>
-  <div style="display:flex;gap:10px;padding:0 14px 10px;">
     <button class="parcours-cta" style="background:linear-gradient(135deg,#6c5ce7,#a29bfe);box-shadow:0 5px 0 rgba(108,92,231,.35);flex:1;" onclick="showRevision()">
       <span class="pc-ico" style="font-size:1.6rem;">📖</span>
       <div class="pc-text"><div class="pc-title" style="font-size:.95rem;">Fiches révision</div></div>
-      <span class="pc-arrow">›</span>
-    </button>
-    <button class="parcours-cta" style="background:linear-gradient(135deg,#2d3436,#636e72);box-shadow:0 5px 0 rgba(45,52,54,.35);flex:1;" onclick="showProfDashboard()">
-      <span class="pc-ico" style="font-size:1.6rem;">👨‍🏫</span>
-      <div class="pc-text"><div class="pc-title" style="font-size:.95rem;">Espace prof</div></div>
       <span class="pc-arrow">›</span>
     </button>
   </div>
@@ -795,27 +717,9 @@ header{background:linear-gradient(135deg,#1a1a4e,#7B2FBE);padding:11px 14px;disp
   </div>
 </div>
 
-<!-- ═══ TABLEAU DE BORD PROF ═══ -->
-<div id="prof-dashboard-screen" class="screen">
-  <div id="prof-dashboard-inner"></div>
-</div>
-
 <!-- ═══ PROFILE ═══ -->
 <div id="profile-screen" class="screen">
   <div class="prof-wrap" id="prof-inner"></div>
-</div>
-
-<!-- ═══ LEADERBOARD ═══ -->
-<div id="leaderboard-screen" class="screen">
-  <div class="lb-wrap">
-    <div class="lb-header">
-      <button class="btn-bk" onclick="goHome()">←</button>
-      <div><h2>🏆 Classement</h2><div style="font-size:.78rem;color:rgba(255,255,255,.8);font-weight:600;margin-top:1px;">Qui est le/la meilleur·e ?</div></div>
-    </div>
-    <div id="lb-podium" class="lb-podium"></div>
-    <div id="lb-list" class="lb-list"></div>
-    <div style="height:20px"></div>
-  </div>
 </div>
 
 <!-- ═══ EXAMEN BLANC ═══ -->
@@ -1373,6 +1277,9 @@ function saveDB(d){
   }, 1500);
 }
 
+// Version synchrone (utilise le cache en mémoire — toujours dispo après le login)
+function loadDBSync(){ return _dbCache || {users:{}, profMsg:''}; }
+
 // Forcer un rechargement depuis JSONBin (utile pour le classement)
 async function refreshDBFromCloud(){
   const binId = localStorage.getItem(BIN_ID_KEY);
@@ -1493,7 +1400,6 @@ function goHome(){
     el.textContent=s&&s.done>0?`✅ ${Math.round(s.correct/s.done*100)}%`:'➕ À commencer';
   });
   refreshHdr();show('home-screen');
-  renderProfMsg();
 }
 
 /* ════════════════════════
@@ -2008,8 +1914,8 @@ function renderParcoursSubSelector(){
 function getNodeKey(sub, chapIdx, stepIdx){ return `parc_${sub}_${chapIdx}_${stepIdx}`; }
 
 function getNodeProgress(key){
-  const db = loadDB(), u = db.users[CID];
-  return (u.parcours||{})[key] || {done:false,score:0,total:0,stars:0};
+  const db = loadDBSync(), u = db.users[CID];
+  return (u&&u.parcours||{})[key] || {done:false,score:0,total:0,stars:0};
 }
 
 function isNodeUnlocked(sub, chapIdx, stepIdx){
@@ -2241,7 +2147,7 @@ function showEvalResults(){
   else{grade='D';mention='Courage, révise encore ! 📚';gradeClass='D';}
 
   // Save to parcours progress
-  const db = loadDB(), u = db.users[CID];
+  const db = loadDBSync(), u = db.users[CID];
   if(!u.parcours) u.parcours={};
   u.parcours[nodeKey] = {done:true, score, total, stars};
   const xp = score*8 + (pct===1?15:0);
@@ -2306,7 +2212,7 @@ victory = function(){
   _origVictory();
   if(PARC_PENDING){
     const {sub,ci,si} = PARC_PENDING;
-    const db = loadDB(), u = db.users[CID];
+    const db = loadDBSync(), u = db.users[CID];
     if(!u.parcours) u.parcours={};
     const key = getNodeKey(sub,ci,si);
     const pct = QS.score/QS.questions.length;
@@ -2328,41 +2234,6 @@ victory = function(){
 /* ════════════════════════
    LEADERBOARD
 ════════════════════════ */
-function showLeaderboard(){
-  if(!CU){showLogin();return;}
-  renderLeaderboard();show('leaderboard-screen');
-}
-function renderLeaderboard(){
-  const db=loadDB();
-  const users=Object.entries(db.users).map(([id,u])=>({id,...u}));
-  users.sort((a,b)=>b.xp-a.xp);
-  const podium=document.getElementById('lb-podium');
-  const list=document.getElementById('lb-list');
-  podium.innerHTML='';list.innerHTML='';
-  if(users.length===0){list.innerHTML='<div class="lb-empty">Aucun élève encore 😴</div>';return;}
-  // Podium top 3
-  const order=users.length>=3?[users[1],users[0],users[2]]:[users[0],users[1]].filter(Boolean);
-  const pClass=['p2','p1','p3'],pRank=['🥈','🥇','🥉'];
-  const pOrd=[2,1,3];
-  order.forEach((u,i)=>{
-    if(!u)return;
-    const div=document.createElement('div');div.className='podium-item';
-    div.innerHTML=`<div class="podium-av">${u.av}</div><div class="podium-name">${u.name}</div><div class="podium-xp">⭐ ${u.xp} XP</div><div class="podium-block ${pClass[i]}">${pRank[i]}</div>`;
-    podium.appendChild(div);
-  });
-  // Rest of list
-  users.forEach((u,i)=>{
-    if(i<3&&users.length>3)return;
-    const isMe=u.id===CID;
-    const row=document.createElement('div');row.className='lb-row'+(isMe?' me':'');
-    const td=Object.values(u.subStats||{}).reduce((a,s)=>a+(s.done||0),0);
-    row.innerHTML=`<div class="lb-rank">#${i+1}</div><div class="lb-av">${u.av}</div><div class="lb-info"><div class="lb-uname">${u.name}${isMe?' 👈':''}</div><div class="lb-ucls">${u.cls} · ${td} questions</div></div><div class="lb-score"><div class="lb-xp">⭐ ${u.xp}</div><div class="lb-streak">🔥 ${u.streak}</div></div>`;
-    list.appendChild(row);
-  });
-  const myRank=users.findIndex(u=>u.id===CID)+1;
-  if(myRank>3&&users.length>3){const sep=document.createElement('div');sep.style.cssText='text-align:center;font-size:.75rem;color:#aaa;font-weight:700;padding:6px;';sep.textContent=`Tu es classé·e #${myRank} sur ${users.length} élèves`;list.appendChild(sep);}
-}
-
 /* ════════════════════════
    EXAMEN BLANC
 ════════════════════════ */
@@ -2621,24 +2492,6 @@ function rejectConsent(){
       <h2>Application indisponible</h2>
       <p style="margin-top:8px">Sans accepter la politique de confidentialité, l'application ne peut pas fonctionner.<br><br>Tu peux revenir à tout moment en rechargeant la page.</p>
     </div>`;
-}
-
-/* ════════════════════════
-   MESSAGE PROF (bannière accueil)
-════════════════════════ */
-function renderProfMsg(){
-  const db=loadDB();
-  const msg=(db.profMsg||'').trim();
-  const existing=document.getElementById('prof-msg-banner');
-  if(existing)existing.remove();
-  if(!msg)return;
-  const banner=document.createElement('div');
-  banner.id='prof-msg-banner';
-  banner.className='msg-banner';
-  banner.innerHTML=`<span class="mb-ico">👨‍🏫</span><span class="mb-text">${msg}</span><span class="mb-close" onclick="this.closest('.msg-banner').remove()">✕</span>`;
-  const home=document.getElementById('home-screen');
-  const hero=home.querySelector('.hero');
-  if(hero)hero.after(banner);
 }
 
 /* ════════════════════════
@@ -2934,109 +2787,10 @@ function renderRevision(){
   document.getElementById('revision-inner').innerHTML=html;
 }
 
-/* ════════════════════════
-   TABLEAU DE BORD PROF
-════════════════════════ */
-const PROF_PIN='2026'; // PIN modifiable ici
-let DASH_UNLOCKED=false;
-
-function showProfDashboard(){
-  renderDashboard();show('prof-dashboard-screen');
 }
-function renderDashboard(){
-  if(!DASH_UNLOCKED){
-    document.getElementById('prof-dashboard-inner').innerHTML=`
-      <div class="dash-wrap">
-        <div class="dash-header">
-          <button class="btn-bk" onclick="goHome()">←</button>
-          <h2>👨‍🏫 Espace Professeur</h2>
-        </div>
-        <div class="dash-lock">
-          <div class="dl-ico">🔐</div>
-          <h3>Accès réservé</h3>
-          <p>Entre le code PIN pour accéder au tableau de bord</p>
-          <div class="dash-pin-row">
-            <input type="password" maxlength="1" id="p1" oninput="movePinFocus(this,'p2')" inputmode="numeric">
-            <input type="password" maxlength="1" id="p2" oninput="movePinFocus(this,'p3')" inputmode="numeric">
-            <input type="password" maxlength="1" id="p3" oninput="movePinFocus(this,'p4')" inputmode="numeric">
-            <input type="password" maxlength="1" id="p4" oninput="movePinFocus(this,null)" inputmode="numeric">
-          </div>
-          <div id="pin-err" style="color:var(--coral);font-weight:800;font-size:.85rem;display:none;margin-bottom:12px;">❌ Code incorrect</div>
-          <button class="btn-auth" onclick="checkPin()">🔓 Accéder</button>
-          <br><button class="btn-bkp" onclick="goHome()" style="margin-top:10px;width:100%">← Retour</button>
-        </div>
-      </div>`;
-    return;
-  }
-  // Dashboard content
-  const db=loadDB();
-  const users=Object.entries(db.users).map(([id,u])=>({id,...u}));
-  const today=new Date().toDateString();
-  const yesterday=new Date(Date.now()-864e5).toDateString();
-  const activeToday=users.filter(u=>u.dailyDate===today||u.lastLoginDate===today).length;
-  const totalQ=users.reduce((a,u)=>a+Object.values(u.subStats||{}).reduce((b,s)=>b+(s.done||0),0),0);
-  const avgXP=users.length?Math.round(users.reduce((a,u)=>a+u.xp,0)/users.length):0;
-  // Weak subjects across all students
-  const subjectFail={};
-  users.forEach(u=>{
-    Object.entries(u.subStats||{}).forEach(([sub,s])=>{
-      if(!subjectFail[sub])subjectFail[sub]={ok:0,total:0};
-      subjectFail[sub].ok+=s.correct||0;
-      subjectFail[sub].total+=s.done||0;
-    });
-  });
-  const sortedSubs=Object.entries(subjectFail).filter(([,s])=>s.total>0).sort((a,b)=>(a[1].ok/a[1].total)-(b[1].ok/b[1].total));
-  // Inactive students (not seen since 2+ days)
-  const inactive=users.filter(u=>{
-    const d=u.lastLoginDate||u.dailyDate;
-    return d && d!==today && d!==yesterday;
-  });
-
-  let inactiveHTML=inactive.length===0?'<div style="color:var(--mint);font-weight:700;font-size:.85rem;padding:8px;">✅ Tous les élèves ont été actifs récemment !</div>':'';
-  inactive.slice(0,10).forEach(u=>{inactiveHTML+=`<div class="dash-inactive-row">⚠️ ${u.av} <strong>${u.name}</strong> (${u.cls}) — inactif·ve</div>`;});
-
-  let subHTML='';
-  sortedSubs.slice(0,6).forEach(([sub,s])=>{
-    const p=Math.round(s.ok/s.total*100);
-    subHTML+=`<div class="dwb"><div class="dwb-top"><span>${SMETA[sub].icon} ${SMETA[sub].name}</span><span>${p}%</span></div><div class="dwb-bar"><div class="dwb-fill" style="width:${p}%;background:${BCOLORS[sub]}"></div></div></div>`;
-  });
-
-  users.sort((a,b)=>b.xp-a.xp);
-  let studHTML='';
-  users.forEach((u,i)=>{
-    const td=Object.values(u.subStats||{}).reduce((a,s)=>a+(s.done||0),0);
-    const tc=Object.values(u.subStats||{}).reduce((a,s)=>a+(s.correct||0),0);
-    const pct=td>0?Math.round(tc/td*100):0;
-    studHTML+=`<div class="dsr"><div class="dsr-av">${u.av}</div><div class="dsr-info"><div class="dsr-name">#${i+1} ${u.name}</div><div class="dsr-meta">${u.cls} · ${td} questions · ${pct}% réussite</div></div><div class="dsr-right"><div class="dsr-xp">⭐${u.xp}</div><div class="dsr-streak">🔥${u.streak}</div></div></div>`;
-  });
-
-  const profMsg=db.profMsg||'';
-
-  document.getElementById('prof-dashboard-inner').innerHTML=`
-    <div class="dash-wrap">
-      <div class="dash-header">
-        <button class="btn-bk" onclick="goHome()">←</button>
-        <h2>👨‍🏫 Tableau de bord</h2>
-      </div>
-      <div class="dash-body">
-        <div class="dash-stat-grid">
-          <div class="dash-stat"><div class="ds-val">👥 ${users.length}</div><div class="ds-lbl">Élèves inscrits</div></div>
-          <div class="dash-stat"><div class="ds-val">🟢 ${activeToday}</div><div class="ds-lbl">Actifs aujourd'hui</div></div>
-          <div class="dash-stat"><div class="ds-val">❓ ${totalQ}</div><div class="ds-lbl">Questions total</div></div>
-          <div class="dash-stat"><div class="ds-val">⭐ ${avgXP}</div><div class="ds-lbl">XP moyen</div></div>
-        </div>
-        <div class="dash-section">
-          <h3>📢 Message aux élèves</h3>
-          <textarea class="msg-textarea" id="prof-msg-input" placeholder="Ex : Bon courage pour le contrôle de vendredi ! 💪">${profMsg}</textarea>
-          <button class="btn-auth" style="background:linear-gradient(135deg,#2d3436,#636e72)" onclick="saveProfMsg()">💾 Publier le message</button>
-        </div>
-        <div class="dash-section"><h3>📊 Réussite par matière (classe entière)</h3>${subHTML||'<div style="color:#aaa;font-size:.85rem">Pas encore assez de données</div>'}</div>
-        <div class="dash-section"><h3>⚠️ Élèves inactifs</h3>${inactiveHTML}</div>
-        <div class="dash-section"><h3>🏆 Classement élèves</h3>${studHTML||'<div style="color:#aaa;font-size:.85rem">Aucun élève inscrit</div>'}</div>
-        <button class="btn-bkp" onclick="DASH_UNLOCKED=false;goHome()" style="width:100%;margin-top:8px">🔒 Verrouiller & quitter</button>
-        <div style="height:20px"></div>
-      </div>
-    </div>`;
+</script>
+</body>
+</html>
 }
 
 function printFiche(btn){
