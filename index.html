@@ -1410,8 +1410,9 @@ function openSubject(sub){
   document.getElementById('themes-title').textContent=s.icon+' '+s.name;
   const grid=document.getElementById('themes-grid');grid.innerHTML='';
   QDB[sub].forEach((th,i)=>{
-    const ss=(CU.subStats||{})[sub]||{};
-    const pct=ss.done>0?Math.round(ss.correct/ss.done*100):null;
+    const themeKey=sub+'_'+i;
+    const ts=(CU.subStats||{})[themeKey]||{};
+    const pct=ts.done>0?Math.round(ts.correct/ts.done*100):null;
     const card=document.createElement('div');card.className='theme-card';
     card.innerHTML=`
       <div class="tc-icon">${th.theme.split(' ')[0]}</div>
@@ -1465,7 +1466,7 @@ function launchTheme(sub,themeIdx){
   let arr=[...th.questions];
   for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
   arr=shuffleAnswers(arr);
-  QS={sub,theme:th.theme,questions:arr,qi:0,lives:5,score:0,answered:false};
+  QS={sub,theme:th.theme,themeIdx,questions:arr,qi:0,lives:5,score:0,answered:false};
   show('quiz-screen');renderQ();
 }
 function renderQ(){
@@ -1531,11 +1532,15 @@ async function victory(){
   const xp=QS.score*10+(pct===1?20:0);
   document.getElementById('xp-num').textContent=`+${xp} XP`;
   // save
-  const db=loadDB(),u=db.users[CID];
+  const db=await loadDB(),u=db.users[CID];
   u.streak++;u.xp+=xp;
   u.dailyDone=Math.min((u.dailyDone||0)+1,5);u.dailyDate=new Date().toDateString();
   if(!u.subStats[QS.sub])u.subStats[QS.sub]={done:0,correct:0};
   u.subStats[QS.sub].done+=QS.questions.length;u.subStats[QS.sub].correct+=QS.score;
+  // Stats par thème
+  const themeKey=QS.sub+'_'+QS.themeIdx;
+  if(!u.subStats[themeKey])u.subStats[themeKey]={done:0,correct:0};
+  u.subStats[themeKey].done+=QS.questions.length;u.subStats[themeKey].correct+=QS.score;
   if(!u.history)u.history=[];
   const now=new Date();
   u.history.push({sub:QS.sub,theme:QS.theme,score:QS.score,total,date:now.toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})});
@@ -2320,7 +2325,7 @@ function showExamResults(){
   else if(note>=8){grade='C';mention='Courage, revois certains points ! 📚';}
   else{grade='D';mention='Il faut réviser encore — you got this ! 🎯';}
   // Save weak points
-  const db=loadDB(),u=db.users[CID];
+  const db=loadDBSync(),u=db.users[CID];
   if(!u.weakPoints)u.weakPoints=[];
   answers.forEach(a=>{if(!a.correct)u.weakPoints.push({q:a.q.q,a:a.q.a,c:a.q.c,e:a.q.e,sub:a.q.sub});});
   if(u.weakPoints.length>60)u.weakPoints=u.weakPoints.slice(-60);
@@ -2385,7 +2390,7 @@ function retryAllWeak(){
 }
 function clearWeakPoints(){
   if(!confirm('Effacer toutes tes erreurs ?'))return;
-  const db=loadDB();db.users[CID].weakPoints=[];saveDB(db);CU=db.users[CID];showWeakPoints();
+  const db=loadDBSync();db.users[CID].weakPoints=[];saveDB(db);CU=db.users[CID];showWeakPoints();
 }
 
 /* ════════════════════════
@@ -2437,8 +2442,7 @@ function showPrivacy(from){
 
 function deleteAccount(){
   if(!confirm('⚠️ Supprimer ton compte supprimera définitivement toutes tes données (scores, progression, flammes). Cette action est irréversible.\n\nConfirmer ?')) return;
-  const db=loadDB();
-  delete db.users[CID];
+  const db=loadDBSync();
   saveDB(db);
   CU=null;CID=null;
   document.getElementById('hdr-av').textContent='?';
@@ -2496,7 +2500,7 @@ function rejectConsent(){
 ════════════════════════ */
 function checkDailyStreak(){
   if(!CU)return;
-  const db=loadDB(),u=db.users[CID];
+  const db=loadDBSync(),u=db.users[CID];
   const today=new Date().toDateString();
   const yesterday=new Date(Date.now()-864e5).toDateString();
   // Si dernière connexion = hier → streak continue, sinon reset
